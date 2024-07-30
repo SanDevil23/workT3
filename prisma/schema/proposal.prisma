@@ -1,0 +1,21 @@
+model Proposal {
+  proposal_id   Int            @id @default(autoincrement())
+  project_id    Int
+  freelancer_id Int
+  bid_amount    Decimal        @db.Decimal(10, 2)
+  cover_letter  String?
+  status        ProposalStatus @default(pending)
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @updatedAt
+
+  project    Project @relation(fields: [project_id], references: [project_id])
+  freelance  User    @relation("UserProposals",fields: [freelancer_id], references: [user_id])
+  @@map("Proposals")
+
+}
+
+enum ProposalStatus {
+  pending
+  accepted
+  rejected
+}

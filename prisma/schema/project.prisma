@@ -1,0 +1,23 @@
+model Project {
+  project_id  Int           @id @default(autoincrement())
+  client_id   Int
+  title       String
+  description String
+  budget      Decimal       @db.Decimal(10, 2)
+  status      ProjectStatus @default(open)
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
+
+  client User @relation(fields: [client_id], references: [user_id])
+  contract Contract?  
+  proposals Proposal[]
+
+  @@map("Projects")
+}
+
+enum ProjectStatus {
+  open
+  in_progress
+  completed
+  cancelled
+}

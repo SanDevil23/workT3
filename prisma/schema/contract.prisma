@@ -1,0 +1,25 @@
+model Contract {
+  contract_id   Int            @id @default(autoincrement())
+  project_id    Int            @unique
+  freelancer_id Int
+  client_id     Int
+  agreed_amount Decimal        @db.Decimal(10, 2)
+  start_date    DateTime
+  end_date      DateTime?
+  status        ContractStatus @default(active)
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @updatedAt
+
+  project    Project @relation(fields: [project_id], references: [project_id])
+  freelancer User    @relation("FreelancerContracts", fields: [freelancer_id], references: [user_id])
+  client     User    @relation("ClientContracts", fields: [client_id], references: [user_id])
+  review     Review?
+
+  @@map("Contracts")
+}
+
+enum ContractStatus {
+  active
+  completed
+  cancelled
+}

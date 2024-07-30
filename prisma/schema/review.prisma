@@ -1,0 +1,15 @@
+model Review {
+  review_id   Int      @id @default(autoincrement())
+  contract_id Int      @unique
+  reviewer_id Int
+  reviewee_id Int
+  rating        Int       
+  comment     String?
+  created_at  DateTime @default(now())
+
+  contract Contract @relation(fields: [contract_id], references: [contract_id])
+  reviewer User     @relation("ReviewerReviews", fields: [reviewer_id], references: [user_id])
+  reviewee User     @relation("RevieweeReviews", fields: [reviewee_id], references: [user_id])
+
+  @@map("Reviews")
+}
