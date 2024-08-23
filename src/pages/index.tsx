@@ -14,18 +14,18 @@ export default function Landing() {
       <main className={styles.main}>
         <div className={styles.container}>
           <h1 className={styles.title}>
-            work <span className={styles.pinkSpan}>T3</span>
+            Work<span className={styles.pinkSpan}>T3</span>
           </h1>
           <div className={styles.cardRow}>
-            <div className={styles.card} onClick={() => Router.push("/Login")}>
+            <button className={styles.card} onClick={() => Router.push("/Login")}>
               <h3 className={styles.cardTitle}>Login</h3>
-            </div>
-            <div
+            </button>
+            <button
               className={styles.card}
               onClick={() => Router.push("/Register")}
             >
               <h3 className={styles.cardTitle}>Register</h3>
-            </div>
+            </button>
           </div>
           <p className={styles.showcaseText}></p>
         </div>
