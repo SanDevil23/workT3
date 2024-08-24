@@ -1,3 +1,11 @@
+
+.h1 {
+  font-size: xx-large;
+  font-weight: 800;
+  text-align: center;
+  color : #2e026d;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -91,6 +99,8 @@
   gap: 1rem;
   padding: 1rem;
   border-radius: 0.75rem;
+  border: none;
+  text-align: center;
   color: white;
   background-color: rgb(255 255 255 / 0.1);
 }
@@ -174,4 +184,49 @@
 
 .submitButton:hover {
   background-color: rgb(255 255 255 / 0.2);
+}
+
+
+/* styles/globals.css */
+
+.loginPage {
+  background-color: rgb(172, 164, 181);
+  width: 50%;
+  font-size: medium;
+  padding: 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+.formGroup {
+  margin-bottom: 1em;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.formButton {
+  padding: 1em;
+  width: max-content;
+  font-size: medium;
+  width: 5em;
+  color: white;
+  background-color: #570bc1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formButton:hover {
+  background-color: #2e026d;
+
 }
