@@ -26,9 +26,9 @@ interface StepProps1 {
 const Step1: React.FC<StepProps1> = ({ formData, handleChange, handleNext}) => {
   
   return (
-    <div className='bg-gray-200 inline p-4 text-xl w-1/2 rounded-md '>
-      <h2 className='block text-3xl font-extrabold'>Enter Your Details</h2>
-      <label className='block'>
+    <div className='bg-gray-200 inline p-4 text-xl w-1/2 rounded-md max-h-max '>
+      <h2 className='block text-3xl font-extrabold text-center'>Enter Your Details</h2>
+      <label className='block font-semibold mt-3'>
         First Name:
         <input
           className='block w-full'
@@ -38,7 +38,7 @@ const Step1: React.FC<StepProps1> = ({ formData, handleChange, handleNext}) => {
           onChange={handleChange}
         />
       </label>
-      <label className='block'>
+      <label className='block font-semibold mt-3'>
         Last Name:
         <input
         className='block w-full'
@@ -49,7 +49,7 @@ const Step1: React.FC<StepProps1> = ({ formData, handleChange, handleNext}) => {
         />
       </label>
 
-      <label className='block'>
+      <label className='block font-semibold mt-3'>
         Email:
         <input
           className='block w-full'
@@ -67,7 +67,7 @@ const Step1: React.FC<StepProps1> = ({ formData, handleChange, handleNext}) => {
 const Step2: React.FC<StepProps> = ({ formData, handleChange, handleNext, handleBack }) => {
   return (
     <div className='bg-gray-200 inline p-4 text-xl w-1/2 rounded-md '>
-      <label className='block'>
+      <label className='block font-semibold mt-3'>
         Profile Pic
         <input
           className='block'
@@ -77,7 +77,7 @@ const Step2: React.FC<StepProps> = ({ formData, handleChange, handleNext, handle
           onChange={handleChange}
         />
       </label>
-      <label className='block'>
+      <label className='block font-semibold mt-3'>
         Bio
         <input
           className='block w-full h-32'
@@ -97,15 +97,17 @@ const Step2: React.FC<StepProps> = ({ formData, handleChange, handleNext, handle
           onChange={handleChange}
         /> */}
         <div className=''>
-            <label className='block'>User Type</label>
-            <select className='block' required>
+            <label className='block font-semibold mt-3'>User Type</label>
+            <select className='block bg-black text-white p-2' required>
                 <option value="client">Client</option>
                 <option value="freelancer">FreeLancer</option>
             </select>
         </div>
       {/* </label> */}
-      <button className='bg-purple-600 text-white p-2 mt-2 rounded-md hover:bg-purple-700' onClick={handleBack}>Back</button>
-      <button className='bg-purple-600 text-white p-2 mt-2 rounded-md hover:bg-purple-700' onClick={handleNext}>Next</button>
+      <div className='flex justify-between'>
+        <button className='bg-purple-600 text-white p-2 mt-2 rounded-md hover:bg-purple-700' onClick={handleBack}>Back</button>
+        <button className='bg-purple-600 text-white p-2 mt-2 rounded-md hover:bg-purple-700' onClick={handleNext}>Next</button>
+      </div>
     </div>
   );
 };
@@ -113,36 +115,41 @@ const Step2: React.FC<StepProps> = ({ formData, handleChange, handleNext, handle
 const Step3: React.FC<StepProps> = ({ formData, handleChange, handleNext, handleBack}) => {
   return (
     <div className='bg-gray-200 inline p-4 text-xl w-1/2 rounded-md '>
-      <h2>Step 3: Security & Privacy</h2>
-      <label>
-        username
+      <label className='block font-semibold mt-3'>
+        Username
         <input
+          className='block w-full'
           type="text"
           name="address"
           value={formData.address}
           onChange={handleChange}
         />
       </label>
-      <label>
+      <label className='block font-semibold mt-3'>
         New Password
         <input
+          className='block w-full'
           type="password"
           name="pass"
           value={formData.address}
           onChange={handleChange}
         />
       </label>
-      <label>
+      <label className='block font-semibold mt-3'>
         Confirm Password
         <input
+          className='block w-full'
           type="password"
           name="confPass"
           value={formData.address}
           onChange={handleChange}
         />
       </label>
-      <button>Submit</button>
-      <button onClick={handleBack}>Back</button>
+      
+      <div className='flex justify-between'>
+        <button className='bg-purple-600 text-white p-2 mt-2 rounded-md hover:bg-purple-700' onClick={handleBack}>Back</button>
+        <button className='bg-lime-700 text-white p-2 mt-2 rounded-md hover:bg-purple-700'>Submit</button>
+      </div>
     </div>
   );
 };
