@@ -12,10 +12,10 @@ interface StepProps1 {
 
 interface StepProps2 {
   formData: {
-    profilePic: File | null;
     bio: string;
-    userType: string;
   };
+  setPic: React.Dispatch<React.SetStateAction<File | undefined>>;
+  setUserType: React.Dispatch<React.SetStateAction<string>>;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleNext: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleBack: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -84,34 +84,20 @@ const Step1: React.FC<StepProps1> = ({
 
 const Step2: React.FC<StepProps2> = ({
   formData,
+  setPic,
+  setUserType,
   handleChange,
   handleNext,
   handleBack,
 }) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      handleChange({
-        ...e,
-        target: {
-          ...e.target,
-          name: "profilePic",
-          value: e.target.files[0], // Set the selected file to formData
-        },
-      });
+      setPic(e.target.files[0]);
     }
   };
-
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    handleChange({
-      ...e,
-      target: {
-        ...e.target,
-        name: "userType",
-        value: e.target.value, // Update the userType in formData
-      },
-    });
+    setUserType(e.target.value);
   };
-
   return (
     <div className="bg-gray-200 inline p-4 text-xl w-1/2 rounded-md ">
       <label className="block font-semibold mt-3">
@@ -138,7 +124,6 @@ const Step2: React.FC<StepProps2> = ({
         <select
           className="block bg-black text-white p-2"
           required
-          value={formData.userType}
           onChange={handleSelectChange}
         >
           <option value="client">Client</option>
@@ -220,12 +205,13 @@ const Register: React.FC = () => {
     firstName: "",
     lastName: "",
     email: "",
-    profilePic: null,
     bio: "",
-    userType: "",
     password: "",
     userName: "",
   });
+
+  const [profilePic, setPic] = useState<File | undefined>(undefined);
+  const [userType, setUserType] = useState<string>("");
 
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
@@ -245,6 +231,8 @@ const Register: React.FC = () => {
 
   const handleSubmit = () => {
     console.log("Form Data:", formData);
+    console.log(profilePic);
+    console.log(userType);
   };
 
   return (
@@ -259,6 +247,8 @@ const Register: React.FC = () => {
       {currentStep === 2 && (
         <Step2
           formData={formData}
+          setPic={setPic}
+          setUserType={setUserType}
           handleChange={handleChange}
           handleNext={handleNext}
           handleBack={handleBack}
